@@ -17,7 +17,7 @@ app.use('/', router)
 
 try {
     app.listen(PORT, () => {
-        console.log(`Server start on: ${PORT}`);
+        console.log(`Server start on PORT: ${PORT}`);
     })
 } catch (error) {
     console.log(error);

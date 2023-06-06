@@ -16,7 +16,8 @@ const urlSchema = new Schema(
             type: String,
             uniquie: true
         }
-    }
+    },
+    {timestamps: true}
 )
 
 export default model("url", urlSchema)
