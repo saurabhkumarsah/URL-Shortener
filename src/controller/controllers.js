@@ -14,9 +14,9 @@ export const createUrl = async (req, res) => {
         const data = await urlModel.findOne({ longUrl: req.body.longUrl }).select({ _id: 0, longUrl: 1, shortUrl: 1, urlCode: 1 })
         if (data) {
             const cacheData = await ASYNC_GET(req.body.longUrl)
-            console.log(cacheData);
+            let obj = JSON.parse(cacheData)
             if (cacheData) {
-                return res.status(201).send({ status: true, message: cacheData })
+                return res.status(201).send({ status: true, message: obj })
             } else {
                 await ASYNC_SET(`${req.body.longUrl}`, JSON.stringify(data))
                 return res.status(201).send({ status: true, data: data })
