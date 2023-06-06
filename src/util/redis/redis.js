@@ -14,8 +14,8 @@ redisClient.auth(REDIS_PASS, (err) => {
     if (err) return console.log(err);
 })
 
-redisClient.on("connect", async function() {
-    console.log('Connected to Redis...');
+redisClient.on("connect", async function () {
+    console.log('Redis is Connected...');
 })
 
 export const ASYNC_GET = promisify(redisClient.GET).bind(redisClient)
