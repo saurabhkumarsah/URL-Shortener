@@ -31,8 +31,11 @@ export const createUrl = async (req, res) => {
                 await ASYNC_SET(`${req.body.longUrl}`, JSON.stringify(saveData))
                 res.status(201).send({ status: true, data: saveData })
             })
-        }
+                .catch((error) => {
+                    return res.status(400).send({ status: false, message: "Please, Provide valid URL" })
+                })
 
+        }
     } catch (error) {
         console.log(error);
         return res.status(500).json({ status: false, message: error.message })
