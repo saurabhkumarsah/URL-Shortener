@@ -3,10 +3,6 @@ const { Schema, model } = mongoose
 
 const urlSchema = new Schema(
     {
-        urlCode: {
-            type: String,
-            uniquie: true
-        },
         longUrl: {
             type: String,
             require: true
@@ -14,6 +10,10 @@ const urlSchema = new Schema(
         shortUrl: {
             type: String,
             require: true,
+            uniquie: true
+        },
+        urlCode: {
+            type: String,
             uniquie: true
         }
     }

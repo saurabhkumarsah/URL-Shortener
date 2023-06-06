@@ -1,5 +1,5 @@
 import express from "express"
-import { createUrl } from "../controller/controllers.js"
+import { createUrl, getURL } from "../controller/controllers.js"
 export const router = express.Router()
 
 router.get('/test', (req, res) => {
@@ -7,4 +7,4 @@ router.get('/test', (req, res) => {
 })
 
 router.post('/url/shorten', createUrl)
-router.get('/:shortUrl')
+router.get('/:urlId', getURL)

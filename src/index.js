@@ -2,6 +2,8 @@ import express, { urlencoded } from "express";
 import mongoose from "mongoose";
 import dotenv, { config } from "dotenv"
 import { router } from "./route/routes.js";
+// import redis from 'redis'
+// import { Stringfy}
 dotenv.config()
 const { PORT, URI } = process.env
 
