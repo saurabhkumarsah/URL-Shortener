@@ -51,7 +51,7 @@ export const getURL = async (req, res) => {
             } else {
                 const data = await urlModel.findOne({ urlCode: req.params.urlId })
                 if (data) {
-                    await ASYNC_SET(req.params.urlId, JSON.stringify(data.longUrl))
+                    await ASYNC_SET(req.params.urlId, JSON.stringify(data.longUrl), "EX", 24 * 60 * 60)
                     return res.status(302).redirect(data.longUrl)
                 } else {
                     return res.status(404).send({ status: false, message: "URL not found" })
