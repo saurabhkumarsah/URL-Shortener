@@ -18,7 +18,7 @@ export const createUrl = async (req, res) => {
             if (cacheData) {
                 return res.status(201).send({ status: true, message: JSON.parse(cacheData) })
             } else {
-                await ASYNC_SET(`${req.body.longUrl}`, JSON.stringify(data))
+                await ASYNC_SET(`${req.body.longUrl}`, JSON.stringify(data), "EX", 24 * 60 * 60)
                 return res.status(201).send({ status: true, data: data })
             }
         } else {
@@ -27,7 +27,7 @@ export const createUrl = async (req, res) => {
                 req.body.shortUrl = `http://${req.headers.host}/${req.body.urlCode}`
                 await urlModel.create(req.body)
                 const saveData = await urlModel.findOne({ longUrl: req.body.longUrl }).select({ _id: 0, longUrl: 1, shortUrl: 1, urlCode: 1 })
-                await ASYNC_SET(`${req.body.longUrl}`, JSON.stringify(saveData))
+                await ASYNC_SET(`${req.body.longUrl}`, JSON.stringify(saveData), "EX", 24 * 60 * 60)
                 res.status(201).send({ status: true, data: saveData })
             })
                 .catch((error) => {
@@ -45,7 +45,7 @@ export const createUrl = async (req, res) => {
 export const getURL = async (req, res) => {
     try {
         if (req.params.urlId) {
-                const fetchFromCache = await ASYNC_GET(req.params.urlId)
+            const fetchFromCache = await ASYNC_GET(req.params.urlId)
             if (fetchFromCache) {
                 return res.status(302).redirect(JSON.parse(fetchFromCache))
             } else {
