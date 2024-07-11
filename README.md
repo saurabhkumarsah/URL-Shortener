@@ -19,8 +19,8 @@ This is a backend application built with Node.js and MongoDB that provides URL s
 3. Set up environment variables:
    - Create a `.env` file in the root directory.
    - Add the following variables to the `.env` file:
-     - `PORT` - MongoDB connection URI
-     - `URI` - MongoDB connection URI
+     - `PORT` - MongoDB connection MONGO_URI
+     - `MONGO_URI` - MongoDB connection MONGO_URI
      - `REDIS_END_POINT` - Redis server host
      - `REDIS_PORT` - Redis server port
      - `REDIS_PASS` - Redis server password
